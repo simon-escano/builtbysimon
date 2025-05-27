@@ -17,7 +17,10 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-export const getAllProfiles = () => db.select().from(profiles);
+export const getProfile = async () => {
+  const result = await db.select().from(profiles).limit(1);
+  return result[0] ?? null;
+};
 
 export const getAllHobbies = () => db.select().from(hobbies);
 

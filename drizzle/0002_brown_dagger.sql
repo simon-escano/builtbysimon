@@ -1,0 +1,1 @@
+ALTER TABLE "tech_stacks" ADD COLUMN "proficiency" integer DEFAULT 0 NOT NULL;

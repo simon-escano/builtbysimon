@@ -1,5 +1,73 @@
 import { date, integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 
+export const profiles = pgTable("profiles", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  bio: text("bio").notNull(),
+  avatarUrl: text("avatar_url"),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+})
+
+export const hobbies = pgTable("hobbies", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  emoji: text("emoji").notNull(),
+})
+
+export const softSkills = pgTable("soft_skills", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+})
+
+export const languages = pgTable("languages", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  proficiency: integer("proficiency").default(0).notNull(),
+})
+
+export const links = pgTable("links", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  type: text("type").notNull(),
+  value: text("value").notNull(),
+  icon: text("icon").notNull(),
+  url: text("url").notNull(),
+})
+
+export const workExperiences = pgTable("workExperiences", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  company: text("company").notNull(),
+  position: text("position").notNull(),
+  description: text("description").notNull(),
+  startedAt: date("started_at").notNull(),
+  finishedAt: date("finished_at"),
+})
+
+export const educations = pgTable("educations", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  school: text("school").notNull(),
+  degree: text("degree").notNull(),
+  description: text("description").notNull(),
+  startedAt: date("started_at").notNull(),
+  finishedAt: date("finished_at"),
+})
+
+export const involvements = pgTable("involvements", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  role: text("role"),
+  description: text("description").notNull(),
+  startedAt: date("started_at").notNull(),
+  finishedAt: date("finished_at"),
+})
+
+export const achievements = pgTable("achievements", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  description: text("description"),
+  date: date("date").notNull(),
+});
+
 export const projects = pgTable("projects", {
   id: uuid("id").primaryKey().defaultRandom(),
   slug: text("slug").notNull().unique(),
@@ -31,6 +99,7 @@ export const techStacks = pgTable("tech_stacks", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   logoUrl: text("logo_url"),
+  proficiency: integer("proficiency").default(0).notNull(),
 });
 
 export const projectTechStacks = pgTable("project_tech_stacks", {
